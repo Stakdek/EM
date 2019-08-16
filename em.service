@@ -1,0 +1,9 @@
+[Unit]
+Description=Auto start for EM
+After=network-online.target
+Wants=network-online.target
+[Service]
+Type=simple
+ExecStart=/usr/bin/em
+[Install]
+WantedBy=default.target

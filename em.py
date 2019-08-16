@@ -120,6 +120,7 @@ if __name__ == '__main__':
     )
     args = parser.parse_args()
     debug = False
+    bot = None
     if args.debug:
         print('DEBUG MODE ON')
         debug = True

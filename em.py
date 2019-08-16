@@ -123,6 +123,9 @@ if __name__ == '__main__':
     if args.debug:
         print('DEBUG MODE ON')
         debug = True
-    TOKEN = CONFIG.telegram_token
-    bot = telepot.Bot(TOKEN)
+    if CONFIG.telegram_token:
+        bot = telepot.Bot(CONFIG.telegram_token)
+    else:
+        print('Got no token from config…DEBUG MODE ON')
+        debug = True
     run(bot, debug)

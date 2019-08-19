@@ -91,14 +91,18 @@ def run(bot=None, debug=False):
     if not bot:
         print('No BOT defined')
         return
-    while online():
-        for check in checks:
-            success, msg = check()
-            if not success:
-                if debug:
-                    print(msg)
-                else:
-                    bot.sendMessage(17036700, msg)
+    while True:
+        bot.getMe()['username']
+        if online():
+            for check in checks:
+                success, msg = check()
+                if not success:
+                    if debug:
+                        print(msg)
+                    else:
+                        bot.sendMessage(17036700, msg)
+        else:
+            print('No internet Connection.')
         time.sleep(60)
     return
 

@@ -75,7 +75,7 @@ def check_websites():
         try:
             returncode = requests.head(url).status_code
             if returncode >= 400:
-                output = output + '- ' + url + ' ' + returncode + '\n'
+                output = output + '- ' + url + ' ' + str(returncode) + '\n'
                 success = False
         except ConnectionError:
             output = output + '- ' + url + '\n'

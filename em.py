@@ -20,6 +20,7 @@ from __future__ import print_function
 # You should have received a copy of the GNU General Public License along
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
+import socket
 import subprocess
 import telepot
 import importlib
@@ -49,25 +50,26 @@ except NameError:
 
 token = CONFIG.telegram_token
 
-import socket
 
 chronic = {
-    'check_websites':None,
+    'check_websites': None,
 }
 
+
 def online(host="8.8.8.8", port=53, timeout=3):
-  """
-  Host: 8.8.8.8 (google-public-dns-a.google.com)
-  OpenPort: 53/tcp
-  Service: domain (DNS/TCP)
-  """
-  try:
-    socket.setdefaulttimeout(timeout)
-    socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
-    return True
-  except socket.error as ex:
-    print(ex)
-    return False
+    """
+    Host: 8.8.8.8 (google-public-dns-a.google.com)
+    OpenPort: 53/tcp
+    Service: domain (DNS/TCP)
+    """
+    try:
+        socket.setdefaulttimeout(timeout)
+        socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
+        return True
+    except socket.error as ex:
+        print(ex)
+        return False
+
 
 def check_websites():
     '''
@@ -96,6 +98,7 @@ checks = [
     check_websites,
 ]
 
+
 def run(bot=None, debug=False):
     if not bot:
         print('No BOT defined')
@@ -114,8 +117,6 @@ def run(bot=None, debug=False):
             print('No internet Connection.')
         time.sleep(60)
     return
-
-
 
 
 if __name__ == '__main__':

@@ -51,6 +51,10 @@ token = CONFIG.telegram_token
 
 import socket
 
+chronic = {
+    'check_websites':None,
+}
+
 def online(host="8.8.8.8", port=53, timeout=3):
   """
   Host: 8.8.8.8 (google-public-dns-a.google.com)
@@ -70,17 +74,20 @@ def check_websites():
     gets list from config and tries to connect to websites
     '''
     output = 'Folgende Adressen sind nicht erreichbar:\n'
-    success = True
     for url in CONFIG.urls:
         try:
             returncode = requests.head(url).status_code
             if returncode >= 400:
                 output = output + '- ' + url + ' ' + str(returncode) + '\n'
-                success = False
+            else:
+                output = output + '- ' + url + ' ' + str(returncode) + '\n'
         except ConnectionError:
             output = output + '- ' + url + '\n'
-            success = False
-    return success, output
+    if output == chronic['check_websites']:
+        print('Nothing new… preventing spam.')
+        return True, ''
+    else:
+        return False, output
 
 
 checks = [

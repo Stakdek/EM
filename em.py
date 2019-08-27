@@ -73,7 +73,7 @@ def check_websites():
     '''
     gets list from config and tries to connect to websites
     '''
-    output = 'Folgende Adressen sind nicht erreichbar:\n'
+    output = ''
     for url in CONFIG.urls:
         try:
             returncode = requests.head(url).status_code

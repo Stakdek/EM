@@ -85,8 +85,10 @@ def check_websites():
             output = output + '- ' + url + '\n'
     if output == chronic['check_websites']:
         print('Nothing new… preventing spam.')
+        chronic['check_websites'] = output
         return True, ''
     else:
+        chronic['check_websites'] = output
         return False, output
 
 

@@ -40,6 +40,10 @@ log = logging.getLogger('EM')
 log.addHandler(JournalHandler())
 log.setLevel(logging.INFO)
 
+
+import socket
+socket.setdefaulttimeout(20)
+
 # from multiprocessing import Pool # multiprocessing
 try:
     reload(sys)
